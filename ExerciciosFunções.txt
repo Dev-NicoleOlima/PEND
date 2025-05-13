@@ -1,0 +1,130 @@
+
+
+// 1. Validação Simples de Número
+function validateNumber(n) {
+    if (typeof n === 'number') return true;
+    throw new Error("Valor não é um número.");
+}
+
+// 2. Validação de Nome e Idade
+function validateUser(name, age) {
+    return typeof name === 'string' && name.trim() !== '' && typeof age === 'number' && age >= 0;
+}
+
+// 3. Fatorial com Recursão
+function factorial(n) {
+    if (n < 0) throw new Error("Fatorial de número negativo não é definido.");
+    if (n === 0) return 1;
+    return n * factorial(n - 1);
+}
+
+// 4. Contagem Regressiva Recursiva
+function countDown(n) {
+    if (n <= 0) return;
+    console.log(n);
+    countDown(n - 1);
+}
+
+// 5. Aplicação de Função
+function applyFunction(fn, value) {
+    return fn(value);
+}
+
+// 6. Array de Funções
+const operations = [
+    (a, b) => a + b,
+    (a, b) => a - b,
+    (a, b) => a * b
+];
+
+operations.forEach(fn => {
+    console.log("Operação:", fn(4, 2));
+});
+
+// 7. Expressão Nomeada
+const greet = function(name) {
+    return "Olá, " + name + "!";
+};
+console.log(greet("Maria"));
+
+// 8. Função em Objeto
+const user = {
+    name: "João",
+    sayHi: function() {
+        return `Oi, eu sou ${this.name}`;
+    }
+};
+console.log(user.sayHi());
+
+// 9. Callback Matemático
+function calculate(a, b, callback) {
+    return callback(a, b);
+}
+console.log(calculate(5, 3, (x, y) => x + y));
+
+// 10. Mensagem Formatada com Callback
+function formatMessage(msg, formatter) {
+    return formatter(msg);
+}
+console.log(formatMessage("Mensagem!", m => m.toUpperCase()));
+
+// 11. Requisição Simulada
+function fakeRequest(url, callback) {
+    setTimeout(() => {
+        callback(null, "OK");
+    }, 1000);
+}
+
+// 12. Encadeamento de Chamadas
+fakeRequest("url1", (err, res1) => {
+    console.log("Resposta 1:", res1);
+    fakeRequest("url2", (err, res2) => {
+        console.log("Resposta 2:", res2);
+        fakeRequest("url3", (err, res3) => {
+            console.log("Resposta 3:", res3);
+        });
+    });
+});
+
+// 13. Mensagem com Atraso
+function delayedHello() {
+    setTimeout(() => {
+        console.log("Hello after 1 second");
+    }, 1000);
+}
+delayedHello();
+
+// 14. Contador com Intervalo
+function countToFive() {
+    let count = 1;
+    const interval = setInterval(() => {
+        console.log(count);
+        if (count === 5) {
+            clearInterval(interval);
+        }
+        count++;
+    }, 1000);
+}
+countToFive();
+
+// 15. Soma com Arrow Function
+const sum = (a, b) => a + b;
+console.log("Soma com arrow function:", sum(3, 4));
+
+// 16. Arrow com this
+const objArrow = {
+    name: "Arrow",
+    sayThis: () => {
+        console.log("Arrow this:", this); // this aqui é global
+    }
+};
+
+const objTraditional = {
+    name: "Traditional",
+    sayThis: function() {
+        console.log("Traditional this:", this); // this aqui é o objeto
+    }
+};
+
+objArrow.sayThis();
+objTraditional.sayThis();
